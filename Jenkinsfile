@@ -15,7 +15,10 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t grupoxx/spring-petclinic:latest .'
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+          sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+          sh 'docker push grupo07/spring-petclinic:latest'
+        }
       }
     }
   }
