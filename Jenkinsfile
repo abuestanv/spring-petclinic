@@ -25,7 +25,7 @@ pipeline {
         }
       }
       steps{
-        withSonarQubeEnv(installationName:'SonarQube', credentialsId:'sona-cloud-key'){
+        withSonarQubeEnv(installationName:'Sonar Qube', credentialsId:'SonarQube'){
           sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.0.2131:sonar'
         }
       }
